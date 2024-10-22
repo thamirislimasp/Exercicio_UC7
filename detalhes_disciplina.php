@@ -22,11 +22,11 @@ if ($disciplinaID) {
 </head>
 <body>
     <h1>Detalhes da Disciplina</h1>
-
-    <p><strong>ID:</strong> <?= $disciplina->getId(); ?></p>
-    <p><strong>Nome:</strong> <?= $disciplina->getNome(); ?></p>
-    <p><strong>Carga Horária:</strong> <?= $disciplina->getCargaHoraria(); ?> horas</p>
-
+    <?php foreach ($disciplina as $disciplina): ?>
+        <p><strong>ID:</strong> <?= $disciplina->getId(); ?></p>
+        <p><strong>Nome:</strong> <?= $disciplina->getNome(); ?></p>
+        <p><strong>Carga Horária:</strong> <?= $disciplina->getCargaHoraria(); ?> horas</p>
+    <?php endforeach; ?>    
     <h2>Alunos Matriculados</h2>
     <ul>
         <?php foreach ($disciplina->getAlunos() as $aluno): ?>

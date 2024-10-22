@@ -1,5 +1,6 @@
 <?php
 require_once './dao/AlunoDAO.php';
+require_once './dao/DisciplinaDAO.php';
 
 $alunoDAO = new AlunoDAO();
 $alunoID = $_GET['matricula'] ?? null;
@@ -21,9 +22,10 @@ if ($alunoID) {
 </head>
 <body>
     <h1>Detalhes do Aluno</h1>
-
-    <p><strong>Matrícula:</strong> <?= $aluno->getMatricula(); ?></p>
-    <p><strong>Nome:</strong> <?= $aluno->getNome(); ?></p>
+    <?php foreach ($aluno as $aluno): ?>
+        <p><strong>Matrícula:</strong> <?= $aluno->getMatricula(); ?></p>
+        <p><strong>Nome:</strong> <?= $aluno->getNome(); ?></p>
+    <?php endforeach; ?>
 
     <h2>Disciplinas Matriculadas</h2>
     <ul>

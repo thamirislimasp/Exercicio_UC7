@@ -66,6 +66,21 @@ class AlunoDAO
         /*
         Retorne a implementação de um objeto do tipo aluno, contendo suas respectivas disciplinas
          */
-        return null;
+
+        $sql = "SELECT * FROM aluno
+            JOIN disciplina_aluno ON aluno.matricula = disciplina_aluno.aluno_id
+            JOIN disciplina ON disciplina_aluno.disciplina_id = disciplina.id
+            WHERE aluno.matricula = 1";
+        $stmt = $this->db->query($sql); 
+        // $stmt->bindParam(':alunoID', $alunoID);
+        // $stmt->execute();
+        
+        $alunoDisc = [];
+        
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $alunoDisc[] = new Aluno($row['matricula'], $row['nome'], $row['disciplina_id']);
+        }
+
+        return $alunoDisc;
     }
 }
